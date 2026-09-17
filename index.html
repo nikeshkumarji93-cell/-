@@ -898,16 +898,22 @@ function generatePreview(validate = true) {
 
 function downloadPDF() {
   generatePreview(true);
-  let element = document.getElementById("paper");
-  let opt = {
-    margin: 10,
-    filename: `${currentForm}_application.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-  html2pdf().from(element).set(opt).save();
-}
+  
+  let printContent = document.getElementById("paper").innerHTML;
+  let originalContent = document.body.innerHTML;
+
+  document.body.innerHTML = `
+    <div style="padding: 20px; font-family: 'Times New Roman', serif;">
+      ${printContent}
+    </div>
+  `;
+
+  window.print();
+  
+  document.body.innerHTML = originalContent;
+  window.location.reload();
+      }
+    
 
 function resetForm() {
   document.querySelectorAll("input, textarea").forEach(el => {
