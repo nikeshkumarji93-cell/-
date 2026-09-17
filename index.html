@@ -1,105 +1,3 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sikshak Seva | शिक्षक सेवा पोर्टल</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,"Noto Sans Devanagari",sans-serif;
-}
-
-body{
-    background:#f4f6f8;
-    color:#222;
-}
-
-/* TOP BAR */
-.topbar{
-    background:#073b6f;
-    color:white;
-    padding:7px 5%;
-    font-size:13px;
-    display:flex;
-    justify-content:space-between;
-}
-
-/* HEADER */
-header{
-    background:white;
-    border-bottom:1px solid #ddd;
-    padding:15px 5%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo-icon{
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    background:#ff9933;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    font-weight:bold;
-}
-
-.logo h1{
-    color:#073b6f;
-    font-size:25px;
-}
-
-.logo p{
-    color:#666;
-    font-size:12px;
-    margin-top:3px;
-}
-
-.menu-btn{
-    background:#073b6f;
-    color:white;
-    border:0;
-    padding:9px 14px;
-    border-radius:5px;
-    font-size:20px;
-}
-
-/* NAV */
-nav{
-    background:#073b6f;
-    padding:0 5%;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    display:inline-block;
-    padding:13px 16px;
-    font-size:14px;
-}
-
-nav a:hover{
-    background:#0b528f;
-}
-
-/* HERO */
-.hero{
-    background:linear-gradient(135deg,#073b6f,#0d62a4);
-    color:white;
     padding:35px 5%;
     text-align:center;
 }
@@ -125,7 +23,986 @@ nav a:hover{
 }
 
 .search-box input{
-    flex:1;
+    flex:1;<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0757a6">
+<title>Sikshak Seva | शिक्षक सेवा पोर्टल</title>
+
+<!-- PDF Generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#f3f7fb;color:#172033
+}
+.topbar{
+  background:#063b73;color:#fff;text-align:center;
+  padding:8px;font-size:13px
+}
+header{
+  background:#fff;border-bottom:1px solid #ddd;
+  position:sticky;top:0;z-index:1000
+}
+.header-inner{
+  max-width:1200px;margin:auto;padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between
+}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{
+  width:47px;height:47px;border-radius:10px;
+  background:linear-gradient(135deg,#0757a6,#0b7ac1);
+  color:#fff;display:flex;align-items:center;
+  justify-content:center;font-weight:bold;font-size:22px
+}
+.brand h1{font-size:22px;color:#0757a6}
+.brand p{font-size:11px;color:#777;margin-top:3px}
+nav{display:flex;gap:5px}
+nav a{
+  text-decoration:none;color:#333;padding:9px 12px;
+  border-radius:6px;font-size:14px
+}
+nav a:hover{background:#eaf3ff;color:#0757a6}
+.menu-btn{
+  display:none;background:#0757a6;color:#fff;
+  border:0;border-radius:6px;padding:8px 12px;font-size:21px
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#0757a6,#0c73c4);
+  color:#fff;text-align:center;padding:48px 18px 55px
+}
+.hero h2{font-size:31px;margin-bottom:10px}
+.hero p{font-size:15px;line-height:1.6}
+.search{
+  max-width:620px;margin:23px auto 0;
+  background:#fff;border-radius:8px;overflow:hidden;
+  display:flex
+}
+.search input{
+  flex:1;border:0;outline:0;padding:15px;font-size:15px
+}
+.search button{
+  width:55px;border:0;background:#ff8a00;
+  color:#fff;font-size:19px
+}
+
+/* CONTENT */
+.container{max-width:1150px;margin:auto;padding:18px}
+.section-title{text-align:center;margin:25px 0}
+.section-title h2{font-size:27px;color:#123e69}
+.section-title p{font-size:14px;color:#777;margin-top:6px}
+
+/* SERVICE CARDS */
+.cards{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:17px
+}
+.card{
+  background:#fff;border:1px solid #dce4ec;
+  border-radius:12px;padding:20px 14px;
+  text-align:center;min-height:205px;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  box-shadow:0 3px 12px #00000010;
+  transition:.2s
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px #00000018
+}
+.card-icon{font-size:40px;margin-bottom:10px}
+.card h3{font-size:17px;color:#173c67;margin-bottom:7px}
+.card p{font-size:12px;color:#777;line-height:1.5;margin-bottom:15px}
+.card button{
+  border:0;background:#0757a6;color:#fff;
+  padding:10px;border-radius:6px;cursor:pointer;
+  font-weight:bold
+}
+.card button:hover{background:#043e76}
+
+/* GENERATOR */
+.generator{
+  display:none;margin-top:35px
+}
+.generator.show{display:block}
+.generator-header{
+  background:#0757a6;color:#fff;padding:19px;
+  border-radius:10px 10px 0 0
+}
+.generator-header h2{font-size:22px}
+.generator-header p{font-size:13px;margin-top:5px}
+.generator-body{
+  background:#fff;padding:20px;
+  border-radius:0 0 10px 10px;
+  box-shadow:0 4px 15px #00000012
+}
+
+/* FORM SELECTOR */
+.form-selector{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:8px;margin-bottom:20px
+}
+.form-selector button{
+  background:#f0f5fa;border:1px solid #d1deea;
+  padding:10px 5px;border-radius:6px;
+  cursor:pointer;color:#234;font-size:12px
+}
+.form-selector button.active{
+  background:#0757a6;color:#fff;border-color:#0757a6
+}
+
+/* INPUTS */
+.form-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:14px
+}
+.group{display:flex;flex-direction:column}
+.group.full{grid-column:1/-1}
+.group label{
+  font-weight:bold;font-size:13px;
+  color:#34495e;margin-bottom:5px
+}
+.group input,.group select,.group textarea{
+  border:1px solid #ccd7e2;border-radius:6px;
+  padding:11px;outline:0;font-size:14px;
+  background:#fff
+}
+.group textarea{min-height:85px;resize:vertical}
+.group input:focus,.group select:focus,.group textarea:focus{
+  border-color:#0757a6
+}
+.days{
+  background:#eef6ff;color:#0757a6;
+  padding:11px;border-radius:6px;font-size:13px
+}
+
+/* ACTIONS */
+.actions{
+  display:flex;gap:9px;flex-wrap:wrap;margin-top:20px
+}
+.btn{
+  border:0;padding:12px 17px;border-radius:6px;
+  cursor:pointer;font-weight:bold;font-size:13px
+}
+.blue{background:#0757a6;color:#fff}
+.orange{background:#ff8a00;color:#fff}
+.gray{background:#e5ebf1;color:#333}
+
+/* PREVIEW */
+.preview{
+  display:none;margin-top:30px
+}
+.preview.show{display:block}
+.preview h3{
+  color:#0757a6;margin-bottom:10px
+}
+.paper{
+  width:100%;max-width:794px;min-height:1123px;
+  margin:auto;background:#fff;padding:55px 60px;
+  color:#111;line-height:1.8;
+  box-shadow:0 3px 15px #00000015
+}
+.paper h2{
+  text-align:center;font-size:22px;
+  text-decoration:underline;margin-bottom:30px
+}
+.subject{
+  font-weight:bold;margin:20px 0
+}
+.paper-body{
+  font-size:16px;text-align:justify
+}
+.signature{
+  width:220px;margin:50px 0 0 auto;text-align:center
+}
+.signature-line{
+  border-top:1px solid #333;
+  margin-top:45px;padding-top:4px
+}
+.note{
+  max-width:794px;margin:10px auto;
+  background:#fff8e6;border-left:4px solid #ff9800;
+  padding:10px;font-size:12px;color:#654d17
+}
+
+/* NOTICE */
+.notice{
+  background:#fff8e6;border-left:5px solid #ff9800;
+  padding:16px;margin:30px 0;font-size:13px;
+  line-height:1.7
+}
+
+/* ABOUT */
+.about{
+  background:#fff;border-radius:10px;
+  padding:24px;margin-top:25px
+}
+.about h2{color:#0757a6;margin-bottom:9px}
+.about p{font-size:14px;color:#666;line-height:1.7}
+
+/* FOOTER */
+footer{
+  background:#082f55;color:#fff;text-align:center;
+  padding:30px 15px;margin-top:35px
+}
+footer p{color:#cbd8e4;font-size:13px;margin-top:6px}
+.copyright{
+  border-top:1px solid #ffffff22;margin-top:17px;
+  padding-top:13px;color:#b8c9d8;font-size:12px
+}
+
+/* MOBILE */
+@media(max-width:850px){
+  nav{
+    display:none;position:absolute;top:71px;left:0;right:0;
+    background:#fff;flex-direction:column;
+    padding:8px 15px;box-shadow:0 5px 15px #0002
+  }
+  nav.show{display:flex}
+  nav a{padding:12px;border-bottom:1px solid #eee}
+  .menu-btn{display:block}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .form-selector{grid-template-columns:repeat(2,1fr)}
+  .form-grid{grid-template-columns:1fr}
+  .group.full{grid-column:auto}
+  .paper{padding:35px 25px;min-height:auto}
+}
+@media(max-width:520px){
+  .cards{gap:9px}
+  .card{min-height:170px;padding:14px 7px}
+  .card-icon{font-size:32px}
+  .card h3{font-size:14px}
+  .card p{font-size:11px}
+  .hero h2{font-size:26px}
+  .brand h1{font-size:19px}
+  .brand p{font-size:10px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+🇮🇳 शिक्षकों के लिए उपयोगी सेवाएं और आवेदन पत्र
+</div>
+
+<header>
+<div class="header-inner">
+
+<div class="brand">
+<div class="logo">शि</div>
+<div>
+<h1>Sikshak Seva</h1>
+<p>शिक्षकों की महत्वपूर्ण सेवाएं एक जगह</p>
+</div>
+</div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<nav id="nav">
+<a href="#home">होम</a>
+<a href="#services">सेवाएं</a>
+<a href="#forms">Forms & Documents</a>
+<a href="#about">हमारे बारे में</a>
+</nav>
+
+</div>
+</header>
+
+
+<section class="hero" id="home">
+
+<h2>शिक्षकों की सभी महत्वपूर्ण सेवाएं एक जगह</h2>
+
+<p>
+आवेदन पत्र बनाएं, PDF डाउनलोड करें और जरूरी शिक्षक सेवाओं तक पहुंचें।
+</p>
+
+<div class="search">
+<input
+id="searchInput"
+type="text"
+placeholder="सेवा खोजें..."
+onkeyup="searchServices()">
+<button>🔍</button>
+</div>
+
+</section>
+
+
+<main class="container" id="services">
+
+<div class="section-title">
+<h2>👨‍🏫 शिक्षक सेवाएं</h2>
+<p>अपनी जरूरत की सेवा चुनें</p>
+</div>
+
+
+<div class="cards" id="serviceCards">
+
+<div class="card" data-search="forms documents form आवेदन दस्तावेज">
+<div class="card-icon">📄</div>
+<h3>Forms & Documents</h3>
+<p>महत्वपूर्ण आवेदन पत्र</p>
+<button onclick="openGenerator()">खोलें →</button>
+</div>
+
+<div class="card" data-search="casual leave आकस्मिक अवकाश छुट्टी">
+<div class="card-icon">🏖️</div>
+<h3>Casual Leave</h3>
+<p>आकस्मिक अवकाश आवेदन</p>
+<button onclick="selectForm('casual')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="medical leave चिकित्सा बीमारी">
+<div class="card-icon">🏥</div>
+<h3>Medical Leave</h3>
+<p>चिकित्सा अवकाश आवेदन</p>
+<button onclick="selectForm('medical')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="other leave अन्य अवकाश">
+<div class="card-icon">📅</div>
+<h3>Other Leave</h3>
+<p>अन्य अवकाश आवेदन</p>
+<button onclick="selectForm('other')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="transfer स्थानांतरण तबादला">
+<div class="card-icon">🔄</div>
+<h3>Transfer</h3>
+<p>स्थानांतरण आवेदन</p>
+<button onclick="selectForm('transfer')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="noc अनापत्ति प्रमाण पत्र">
+<div class="card-icon">📜</div>
+<h3>NOC Application</h3>
+<p>अनापत्ति प्रमाण पत्र</p>
+<button onclick="selectForm('noc')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="joining joining application योगदान">
+<div class="card-icon">🏫</div>
+<h3>Joining Application</h3>
+<p>योगदान आवेदन</p>
+<button onclick="selectForm('joining')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="relieving कार्यमुक्त">
+<div class="card-icon">👋</div>
+<h3>Relieving Application</h3>
+<p>कार्यमुक्त आवेदन</p>
+<button onclick="selectForm('relieving')">आवेदन बनाएं</button>
+</div>
+
+<div class="card" data-search="service book सेवा पुस्तिका">
+<div class="card-icon">📖</div>
+<h3>Service Book</h3>
+<p>सेवा पुस्तिका आवेदन</p>
+<button onclick="selectForm('service')">आवेदन बनाएं</button>
+</div>
+
+</div>
+
+
+<!-- GENERATOR -->
+
+<section class="generator" id="forms">
+
+<div class="generator-header">
+<h2 id="generatorTitle">📝 Application Generator</h2>
+<p>जानकारी भरें और तैयार आवेदन PDF में डाउनलोड करें।</p>
+</div>
+
+<div class="generator-body">
+
+
+<!-- FORM SELECTOR -->
+
+<div class="form-selector">
+
+<button onclick="selectForm('casual')" id="btn-casual">
+🏖️ Casual Leave
+</button>
+
+<button onclick="selectForm('medical')" id="btn-medical">
+🏥 Medical Leave
+</button>
+
+<button onclick="selectForm('other')" id="btn-other">
+📅 Other Leave
+</button>
+
+<button onclick="selectForm('transfer')" id="btn-transfer">
+🔄 Transfer
+</button>
+
+<button onclick="selectForm('noc')" id="btn-noc">
+📜 NOC
+</button>
+
+<button onclick="selectForm('joining')" id="btn-joining">
+🏫 Joining
+</button>
+
+<button onclick="selectForm('relieving')" id="btn-relieving">
+👋 Relieving
+</button>
+
+<button onclick="selectForm('service')" id="btn-service">
+📖 Service Book
+</button>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="group">
+<label>शिक्षक का नाम *</label>
+<input id="name" placeholder="जैसे - Nikesh Kumar" oninput="updatePreview()">
+</div>
+
+
+<div class="group">
+<label>पद *</label>
+<input id="designation" value="शिक्षक" oninput="updatePreview()">
+</div>
+
+
+<div class="group full">
+<label>विद्यालय का नाम *</label>
+<input id="school" placeholder="विद्यालय का पूरा नाम" oninput="updatePreview()">
+</div>
+
+
+<div class="group">
+<label>प्रखंड / जिला</label>
+<input id="district" placeholder="जैसे - पटना" oninput="updatePreview()">
+</div>
+
+
+<div class="group">
+<label>प्रधानाध्यापक / अधिकारी का नाम</label>
+<input id="head" placeholder="नाम" oninput="updatePreview()">
+</div>
+
+
+<div class="group">
+<label>आवेदन की तारीख</label>
+<input type="date" id="applicationDate" onchange="updatePreview()">
+</div>
+
+
+<div class="group">
+<label>स्थान</label>
+<input id="place" placeholder="जैसे - पटना" oninput="updatePreview()">
+</div>
+
+
+<!-- LEAVE FIELDS -->
+
+<div class="group leave-field">
+<label>छुट्टी का प्रकार</label>
+
+<select id="leaveType" onchange="updatePreview()">
+<option>आकस्मिक अवकाश</option>
+<option>चिकित्सा अवकाश</option>
+<option>विशेष अवकाश</option>
+<option>अर्जित अवकाश</option>
+<option>अन्य अवकाश</option>
+</select>
+
+</div>
+
+
+<div class="group leave-field">
+<label>छुट्टी शुरू होने की तारीख</label>
+<input type="date" id="fromDate" onchange="calculateDays();updatePreview()">
+</div>
+
+
+<div class="group leave-field">
+<label>छुट्टी समाप्त होने की तारीख</label>
+<input type="date" id="toDate" onchange="calculateDays();updatePreview()">
+</div>
+
+
+<div class="group full leave-field">
+<div class="days">
+📅 कुल छुट्टी: <strong id="days">0 दिन</strong>
+</div>
+</div>
+
+
+<div class="group full leave-field">
+<label>छुट्टी का कारण *</label>
+<textarea id="reason"
+placeholder="जैसे - आवश्यक व्यक्तिगत कार्य के कारण..."
+oninput="updatePreview()"></textarea>
+</div>
+
+
+<!-- TRANSFER FIELDS -->
+
+<div class="group transfer-field" style="display:none">
+<label>वर्तमान विद्यालय</label>
+<input id="currentSchool" placeholder="वर्तमान विद्यालय" oninput="updatePreview()">
+</div>
+
+<div class="group transfer-field" style="display:none">
+<label>स्थानांतरण का कारण</label>
+<input id="transferReason" placeholder="स्थानांतरण का कारण" oninput="updatePreview()">
+</div>
+
+
+<!-- NOC -->
+
+<div class="group noc-field full" style="display:none">
+<label>NOC का उद्देश्य</label>
+<textarea id="nocPurpose"
+placeholder="NOC किस उद्देश्य के लिए चाहिए?"
+oninput="updatePreview()"></textarea>
+</div>
+
+
+<!-- JOINING -->
+
+<div class="group joining-field" style="display:none">
+<label>Joining की तारीख</label>
+<input type="date" id="joiningDate" onchange="updatePreview()">
+</div>
+
+<div class="group joining-field" style="display:none">
+<label>आदेश / पत्र संख्या</label>
+<input id="orderNo" placeholder="यदि हो" oninput="updatePreview()">
+</div>
+
+
+<!-- RELIEVING -->
+
+<div class="group relieving-field" style="display:none">
+<label>Relieving की तारीख</label>
+<input type="date" id="relievingDate" onchange="updatePreview()">
+</div>
+
+<div class="group relieving-field" style="display:none">
+<label>Relieving का कारण</label>
+<input id="relievingReason" placeholder="कारण" oninput="updatePreview()">
+</div>
+
+
+<!-- SERVICE BOOK -->
+
+<div class="group service-field full" style="display:none">
+<label>सेवा पुस्तिका संबंधी अनुरोध</label>
+<textarea id="serviceRequest"
+placeholder="जैसे - सेवा पुस्तिका में आवश्यक प्रविष्टि करने हेतु..."
+oninput="updatePreview()"></textarea>
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn blue" onclick="generatePreview()">
+👀 Preview देखें
+</button>
+
+<button class="btn orange" onclick="downloadPDF()">
+📄 PDF डाउनलोड करें
+</button>
+
+<button class="btn gray" onclick="resetForm()">
+🔄 Reset
+</button>
+
+</div>
+
+
+<!-- PREVIEW -->
+
+<div class="preview" id="preview">
+
+<h3>📄 आवेदन का Preview</h3>
+
+<div class="note">
+PDF डाउनलोड करने से पहले आवेदन को एक बार जांच लें।
+</div>
+
+
+<div class="paper" id="paper">
+
+<h2 id="pTitle">
+अवकाश हेतु आवेदन पत्र
+</h2>
+
+
+<div class="to-section">
+
+सेवा में,<br>
+
+<strong>
+<span id="pHead">प्रधानाध्यापक / अधिकारी महोदय</span>
+</strong>
+
+<br>
+
+<span id="pSchool">विद्यालय का नाम</span>
+
+<br>
+
+<span id="pDistrict">प्रखंड / जिला</span>
+
+</div>
+
+
+<div class="subject">
+विषय: <span id="pSubject">अवकाश हेतु आवेदन।</span>
+</div>
+
+
+<div class="paper-body" id="pBody">
+
+सविनय निवेदन है कि मैं
+<strong id="pName">________________</strong>,
+<strong id="pDesignation">शिक्षक</strong>
+के पद पर आपके विद्यालय में कार्यरत हूँ।
+
+<br><br>
+
+मुझे आवश्यक व्यक्तिगत कार्य के कारण अवकाश की आवश्यकता है।
+अतः कृपया मुझे नियमानुसार अवकाश प्रदान करने की कृपा करें।
+
+<br><br>
+
+इसके लिए मैं आपका आभारी रहूंगा।
+
+</div>
+
+
+<div class="signature">
+
+भवदीय
+
+<div class="signature-line">
+
+<strong id="pName2">________________</strong>
+
+<br>
+
+<span id="pDesignation2">शिक्षक</span>
+
+<br>
+
+<span id="pSchool2">विद्यालय का नाम</span>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:45px">
+
+स्थान:
+<strong id="pPlace">__________</strong>
+
+<br>
+
+दिनांक:
+<strong id="pDate">__________</strong>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<div class="notice">
+
+<strong>ℹ️ कैसे इस्तेमाल करें?</strong><br>
+
+1. अपनी जरूरत का application चुनें।<br>
+2. नाम, विद्यालय और अन्य जानकारी भरें।<br>
+3. Preview देखें।<br>
+4. सही होने पर PDF Download करें।<br>
+5. PDF को मोबाइल में सेव करके प्रिंट किया जा सकता है।
+
+</div>
+
+
+<section class="about" id="about">
+
+<h2>ℹ️ Sikshak Seva के बारे में</h2>
+
+<p>
+Sikshak Seva का उद्देश्य शिक्षकों के लिए उपयोगी
+आवेदन पत्र और शिक्षा सेवाओं को एक स्थान पर उपलब्ध
+कराना है। आवेदन के प्रारूप को अपने विभाग के
+नियमों के अनुसार जांचकर उपयोग करें।
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<h3>🇮🇳 Sikshak Seva</h3>
+
+<p>शिक्षकों की महत्वपूर्ण सेवाएं एक जगह</p>
+
+<div class="copyright">
+© 2026 Sikshak Seva
+</div>
+
+</footer>
+
+
+<script>
+
+/* CURRENT FORM */
+
+let currentForm = "casual";
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+  document.getElementById("nav").classList.toggle("show");
+
+}
+
+
+/* OPEN GENERATOR */
+
+function openGenerator(){
+
+  const box = document.getElementById("forms");
+
+  box.classList.add("show");
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SELECT FORM */
+
+function selectForm(type){
+
+  currentForm = type;
+
+  openGenerator();
+
+  /* reset visibility */
+
+  document.querySelectorAll(".leave-field")
+    .forEach(e => e.style.display="none");
+
+  document.querySelectorAll(".transfer-field")
+    .forEach(e => e.style.display="none");
+
+  document.querySelectorAll(".noc-field")
+    .forEach(e => e.style.display="none");
+
+  document.querySelectorAll(".joining-field")
+    .forEach(e => e.style.display="none");
+
+  document.querySelectorAll(".relieving-field")
+    .forEach(e => e.style.display="none");
+
+  document.querySelectorAll(".service-field")
+    .forEach(e => e.style.display="none");
+
+
+  /* buttons */
+
+  document.querySelectorAll(".form-selector button")
+    .forEach(b => b.classList.remove("active"));
+
+  const activeButton =
+    document.getElementById("btn-" + type);
+
+  if(activeButton){
+    activeButton.classList.add("active");
+  }
+
+
+  /* title */
+
+  const titles = {
+
+    casual:"🏖️ Casual Leave Application",
+
+    medical:"🏥 Medical Leave Application",
+
+    other:"📅 Other Leave Application",
+
+    transfer:"🔄 Transfer Application",
+
+    noc:"📜 NOC Application",
+
+    joining:"🏫 Joining Application",
+
+    relieving:"👋 Relieving Application",
+
+    service:"📖 Service Book Application"
+
+  };
+
+
+  document.getElementById("generatorTitle").innerText =
+    titles[type];
+
+
+  /* fields */
+
+  if(
+    type==="casual" ||
+    type==="medical" ||
+    type==="other"
+  ){
+
+    document.querySelectorAll(".leave-field")
+      .forEach(e => e.style.display="flex");
+
+    if(type==="casual")
+      document.getElementById("leaveType").value =
+        "आकस्मिक अवकाश";
+
+    if(type==="medical")
+      document.getElementById("leaveType").value =
+        "चिकित्सा अवकाश";
+
+    if(type==="other")
+      document.getElementById("leaveType").value =
+        "अन्य अवकाश";
+
+  }
+
+
+  if(type==="transfer"){
+
+    document.querySelectorAll(".transfer-field")
+      .forEach(e => e.style.display="flex");
+
+  }
+
+
+  if(type==="noc"){
+
+    document.querySelectorAll(".noc-field")
+      .forEach(e => e.style.display="flex");
+
+  }
+
+
+  if(type==="joining"){
+
+    document.querySelectorAll(".joining-field")
+      .forEach(e => e.style.display="flex");
+
+  }
+
+
+  if(type==="relieving"){
+
+    document.querySelectorAll(".relieving-field")
+      .forEach(e => e.style.display="flex");
+
+  }
+
+
+  if(type==="service"){
+
+    document.querySelectorAll(".service-field")
+      .forEach(e => e.style.display="flex");
+
+  }
+
+
+  updatePreview();
+
+}
+
+
+/* DATE FORMAT */
+
+function formatDate(date){
+
+  if(!date) return "__________";
+
+  const p = date.split("-");
+
+  if(p.length!==3) return date;
+
+  return p[2]+"/"+p[1]+"/"+p[0];
+
+}
+
+
+/* DAYS */
+
+function calculateDays(){
+
+  const from =
+    document.getElementById("fromDate").value;
+
+  const to =
+    document.getElementById("toDate").value;
+
+  if(!from || !to){
+
+    document.getElementById("days").innerText =
+      "0 दिन";
+
+    return;
+
+  }
+
+
+  const start =
+    new Date(from+"T00:00:00");
+
+  const end =
+    new Date(to+"T00:00:00");
+
+
+  if(end < start){
+
+    document.getElementById("days").innerText =
+      "⚠️ तारीख गलत";
+
+    return;
+
+  }
+
+
+  const difference =
+    end-start;
+
+  const total =
+    Math.f
     border:0;
     padding:14px;
     font-size:15px;
