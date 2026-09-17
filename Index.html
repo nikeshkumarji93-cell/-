@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sikshak Seva | शिक्षक सेवा पोर्टल</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
+body{
+    background:#f4f6f8;
+    color:#222;
+}
+
+/* TOP BAR */
+.topbar{
+    background:#073b6f;
+    color:white;
+    padding:7px 5%;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* HEADER */
+header{
+    background:white;
+    border-bottom:1px solid #ddd;
+    padding:15px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#ff9933;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo h1{
+    color:#073b6f;
+    font-size:25px;
+}
+
+.logo p{
+    color:#666;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.menu-btn{
+    background:#073b6f;
+    color:white;
+    border:0;
+    padding:9px 14px;
+    border-radius:5px;
+    font-size:20px;
+}
+
+/* NAV */
+nav{
+    background:#073b6f;
+    padding:0 5%;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    display:inline-block;
+    padding:13px 16px;
+    font-size:14px;
+}
+
+nav a:hover{
+    background:#0b528f;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(135deg,#073b6f,#0d62a4);
+    color:white;
+    padding:35px 5%;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:15px;
+    opacity:.95;
+}
+
+/* SEARCH */
+.search-box{
+    max-width:650px;
+    margin:22px auto 0;
+    display:flex;
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+}
+
+.search-box input{
+    flex:1;
+    border:0;
+    padding:14px;
+    font-size:15px;
+    outline:none;
+}
+
+.search-box button{
+    border:0;
+    background:#ff9933;
+    color:white;
+    padding:0 20px;
+    font-size:15px;
+}
+
+/* MAIN */
+.container{
+    width:90%;
+    max-width:1150px;
+    margin:30px auto;
+}
+
+.section-title{
+    border-left:5px solid #ff9933;
+    padding-left:10px;
+    color:#073b6f;
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.card{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:20px;
+    box-shadow:0 2px 5px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 12px rgba(0,0,0,.12);
+}
+
+.card-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#073b6f;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#666;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.card a{
+    display:inline-block;
+    background:#073b6f;
+    color:white;
+    text-decoration:none;
+    padding:8px 13px;
+    border-radius:4px;
+    font-size:13px;
+}
+
+/* STATES */
+.states{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:35px;
+}
+
+.state{
+    background:white;
+    border:1px solid #ddd;
+    padding:15px;
+    border-radius:6px;
+    text-align:center;
+    color:#073b6f;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.state:hover{
+    background:#073b6f;
+    color:white;
+}
+
+/* NOTICE */
+.notice{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:20px;
+    margin-bottom:35px;
+}
+
+.notice-item{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.notice-item:last-child{
+    border-bottom:0;
+}
+
+.badge{
+    background:#e63946;
+    color:white;
+    font-size:11px;
+    padding:4px 7px;
+    border-radius:3px;
+    margin-right:8px;
+}
+
+/* FOOTER */
+footer{
+    background:#073b6f;
+    color:white;
+    margin-top:40px;
+    padding:30px 5%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+}
+
+footer h3{
+    margin-bottom:12px;
+}
+
+footer p,footer a{
+    color:#d9e5f0;
+    font-size:13px;
+    line-height:1.7;
+    text-decoration:none;
+}
+
+.copyright{
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.2);
+    margin-top:25px;
+    padding-top:15px;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:750px){
+
+    .topbar{
+        font-size:11px;
+    }
+
+    header{
+        padding:12px 4%;
+    }
+
+    .logo h1{
+        font-size:21px;
+    }
+
+    .logo-icon{
+        width:45px;
+        height:45px;
+        font-size:21px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        padding:28px 5%;
+    }
+
+    .hero h2{
+        font-size:22px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .states{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <span>भारत सरकार से संबंधित उपयोगी सेवाएँ</span>
+    <span>🇮🇳 शिक्षक सेवा</span>
+</div>
+
+<!-- HEADER -->
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">शि</div>
+
+        <div>
+            <h1>Sikshak Seva</h1>
+            <p>भारत के शिक्षकों के लिए एक उपयोगी मंच</p>
+        </div>
+
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</header>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+    <a href="#">होम</a>
+    <a href="#central">केंद्रीय पोर्टल</a>
+    <a href="#states">राज्यवार पोर्टल</a>
+    <a href="#teacher">शिक्षक सेवाएँ</a>
+    <a href="#exam">परीक्षा / भर्ती</a>
+    <a href="#about">हमारे बारे में</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+    <h2>शिक्षकों की सभी महत्वपूर्ण सेवाएँ एक जगह</h2>
+
+    <p>
+        सरकारी पोर्टल, शिक्षा विभाग, शिक्षक सेवाएँ,
+        प्रशिक्षण, परीक्षा और महत्वपूर्ण लिंक
+    </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="किसी सेवा या पोर्टल को खोजें..."
+            onkeyup="searchCards()"
+        >
+
+        <button>🔍 खोजें</button>
+
+    </div>
+
+</section>
+
+<!-- MAIN -->
+<main class="container">
+
+<!-- CENTRAL PORTALS -->
+
+<h2 class="section-title" id="central">
+    🏛️ प्रमुख केंद्रीय शिक्षा पोर्टल
+</h2>
+
+<div class="cards">
+
+    <div class="card searchable">
+        <div class="card-icon">🎓</div>
+
+        <h3>DIKSHA</h3>
+
+        <p>
+            शिक्षकों और विद्यार्थियों के लिए डिजिटल
+            शिक्षा एवं प्रशिक्षण प्लेटफ़ॉर्म।
+        </p>
+
+        <a href="https://diksha.gov.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">📚</div>
+
+        <h3>NCERT</h3>
+
+        <p>
+            पाठ्यक्रम, पुस्तकें, शैक्षणिक सामग्री
+            और शिक्षा संबंधी संसाधन।
+        </p>
+
+        <a href="https://ncert.nic.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">🏫</div>
+
+        <h3>UDISE+</h3>
+
+        <p>
+            विद्यालय एवं शिक्षा से संबंधित
+            डेटा और ऑनलाइन सेवाएँ।
+        </p>
+
+        <a href="https://udiseplus.gov.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">📖</div>
+
+        <h3>SWAYAM</h3>
+
+        <p>
+            ऑनलाइन पाठ्यक्रम और सीखने के
+            लिए भारत सरकार का प्लेटफ़ॉर्म।
+        </p>
+
+        <a href="https://swayam.gov.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">🇮🇳</div>
+
+        <h3>शिक्षा मंत्रालय</h3>
+
+        <p>
+            भारत सरकार के शिक्षा मंत्रालय की
+            आधिकारिक वेबसाइट।
+        </p>
+
+        <a href="https://www.education.gov.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">📝</div>
+
+        <h3>National Scholarship Portal</h3>
+
+        <p>
+            विद्यार्थियों की छात्रवृत्ति से संबंधित
+            सरकारी सेवाएँ।
+        </p>
+
+        <a href="https://scholarships.gov.in/"
+           target="_blank">
+           Official Website ↗
+        </a>
+    </div>
+
+</div>
+
+
+<!-- STATES -->
+
+<h2 class="section-title" id="states">
+    🗺️ राज्यवार शिक्षक पोर्टल
+</h2>
+
+<div class="states">
+
+    <div class="state">बिहार</div>
+    <div class="state">उत्तर प्रदेश</div>
+    <div class="state">झारखंड</div>
+    <div class="state">मध्य प्रदेश</div>
+    <div class="state">राजस्थान</div>
+    <div class="state">महाराष्ट्र</div>
+    <div class="state">पश्चिम बंगाल</div>
+    <div class="state">दिल्ली</div>
+    <div class="state">हरियाणा</div>
+    <div class="state">गुजरात</div>
+    <div class="state">पंजाब</div>
+    <div class="state">अन्य राज्य</div>
+
+</div>
+
+
+<!-- TEACHER SERVICES -->
+
+<h2 class="section-title" id="teacher">
+    👨‍🏫 शिक्षक उपयोगी सेवाएँ
+</h2>
+
+<div class="cards">
+
+    <div class="card searchable">
+
+        <div class="card-icon">📅</div>
+
+        <h3>Academic Calendar</h3>
+
+        <p>
+            विद्यालयी गतिविधियों और शैक्षणिक
+            कैलेंडर से संबंधित जानकारी।
+        </p>
+
+        <a href="#">देखें ↗</a>
+
+    </div>
+
+
+    <div class="card searchable">
+
+        <div class="card-icon">🧑‍🏫</div>
+
+        <h3>Teacher Training</h3>
+
+        <p>
+            शिक्षक प्रशिक्षण एवं ऑनलाइन
+            learning resources।
+        </p>
+
+        <a href="#">देखें ↗</a>
+
+    </div>
+
+
+    <div class="card searchable">
+
+        <div class="card-icon">📄</div>
+
+        <h3>Teacher Forms</h3>
+
+        <p>
+            शिक्षकों के लिए उपयोगी आवेदन,
+            फॉर्म और दस्तावेज।
+        </p>
+
+        <a href="#">देखें ↗</a>
+
+    </div>
+
+</div>
+
+
+<!-- EXAMS -->
+
+<h2 class="section-title" id="exam">
+    📝 परीक्षा एवं भर्ती
+</h2>
+
+<div class="cards">
+
+    <div class="card searchable">
+        <div class="card-icon">🏛️</div>
+
+        <h3>UPSC</h3>
+
+        <p>केंद्रीय सरकारी परीक्षाओं की आधिकारिक जानकारी।</p>
+
+        <a href="https://upsc.gov.in/" target="_blank">
+            Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">📋</div>
+
+        <h3>SSC</h3>
+
+        <p>कर्मचारी चयन आयोग की आधिकारिक वेबसाइट।</p>
+
+        <a href="https://ssc.gov.in/" target="_blank">
+            Official Website ↗
+        </a>
+    </div>
+
+
+    <div class="card searchable">
+        <div class="card-icon">🎓</div>
+
+        <h3>NTA</h3>
+
+        <p>राष्ट्रीय स्तर की विभिन्न परीक्षाओं की जानकारी।</p>
+
+        <a href="https://nta.ac.in/" target="_blank">
+            Official Website ↗
+        </a>
+    </div>
+
+</div>
+
+
+<!-- NOTICE -->
+
+<h2 class="section-title">
+    📢 महत्वपूर्ण सूचना
+</h2>
+
+<div class="notice">
+
+    <div class="notice-item">
+        <span class="badge">INFO</span>
+        Sikshak Seva एक स्वतंत्र सूचना एवं लिंक प्लेटफ़ॉर्म है।
+    </div>
+
+    <div class="notice-item">
+        <span class="badge">NOTE</span>
+        किसी भी आवेदन या आधिकारिक कार्य के लिए संबंधित सरकारी वेबसाइट को प्राथमिक स्रोत मानें।
+    </div>
+
+    <div class="notice-item">
+        <span class="badge">UPDATE</span>
+        वेबसाइट पर उपलब्ध लिंक समय-समय पर अपडेट किए जाएंगे।
+    </div>
+
+</div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer id="about">
+
+<div class="footer-grid">
+
+    <div>
+
+        <h3>Sikshak Seva</h3>
+
+        <p>
+            भारत के शिक्षकों के लिए सरकारी शिक्षा
+            पोर्टल और उपयोगी संसाधनों को एक जगह
+            उपलब्ध कराने का प्रयास।
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <h3>Quick Links</h3>
+
+        <p><a href="#central">केंद्रीय पोर्टल</a></p>
+        <p><a href="#states">राज्यवार पोर्टल</a></p>
+        <p><a href="#teacher">शिक्षक सेवाएँ</a></p>
+        <p><a href="#exam">परीक्षा / भर्ती</a></p>
+
+    </div>
+
+
+    <div>
+
+        <h3>महत्वपूर्ण</h3>
+
+        <p>About Us</p>
+        <p>Disclaimer</p>
+        <p>Contact</p>
+
+    </div>
+
+</div>
+
+
+<div class="copyright">
+
+    © 2026 Sikshak Seva | सभी अधिकार सुरक्षित
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* SEARCH */
+
+function searchCards(){
+
+    let input =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document.querySelectorAll(".searchable");
+
+    cards.forEach(function(card){
+
+        let text =
+            card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display = "";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+    let nav =
+        document.getElementById("nav");
+
+    if(nav.style.display === "block"){
+        nav.style.display = "none";
+    }else{
+        nav.style.display = "block";
+    }
+
+}
+
+</script>
+
+</body>
+          </html>
