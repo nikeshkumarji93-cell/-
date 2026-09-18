@@ -1995,29 +1995,40 @@ function generatePreview(){
    PDF
 ========================= */
 
-function downloadPDF(){
-
+function downloadPDF() {
   generatePreview();
 
+  const paper = document.getElementById("paper");
 
-  const element =
-    document.getElementById(
-      "paper"
-    );
-
-
-  if(
-    typeof html2pdf ===
-    "undefined"
-  ){
-
-    alert(
-      "PDF सुविधा अभी लोड नहीं हुई है। कृपया दोबारा प्रयास करें।"
-    );
-
+  if (!paper || paper.innerText.trim() === "") {
+    alert("पहले आवेदन की जानकारी भरें और Preview देखें।");
     return;
-
   }
+
+  const options = {
+    margin: 10,
+    filename: "Sikshak-Seva-Application.pdf",
+    image: {
+      type: "jpeg",
+      quality: 0.98
+    },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff"
+    },
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait"
+    }
+  };
+
+  html2pdf()
+    .set(options)
+    .from(paper)
+    .save();
+}
 
 
   const options = {
