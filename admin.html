@@ -1,1 +1,743 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sikshak Seva - Admin Panel</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#f1f5f9;
+  color:#172033;
+}
+
+.header{
+  background:#073b6f;
+  color:white;
+  padding:18px 15px;
+  text-align:center;
+}
+
+.header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.header p{
+  margin:6px 0 0;
+  font-size:14px;
+}
+
+.container{
+  max-width:900px;
+  margin:20px auto;
+  padding:0 15px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+h2{
+  color:#073b6f;
+  margin-top:0;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:11px 17px;
+  cursor:pointer;
+  font-size:15px;
+  margin:4px;
+}
+
+.primary{
+  background:#073b6f;
+  color:white;
+}
+
+.orange{
+  background:#ff9933;
+  color:white;
+}
+
+.red{
+  background:#dc2626;
+  color:white;
+}
+
+.gray{
+  background:#64748b;
+  color:white;
+}
+
+#dashboard{
+  display:none;
+}
+
+.message{
+  padding:10px;
+  border-radius:8px;
+  margin:10px 0;
+  display:none;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.link-item{
+  border:1px solid #e2e8f0;
+  border-radius:9px;
+  padding:12px;
+  margin:10px 0;
+}
+
+.link-item strong{
+  color:#073b6f;
+}
+
+.small{
+  font-size:13px;
+  color:#64748b;
+}
+
+.logout{
+  float:right;
+}
+
+@media(max-width:600px){
+  .logout{
+    float:none;
+    margin-top:10px;
+  }
+
+  .header h1{
+    font-size:21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>📚 Sikshak Seva Admin Panel</h1>
+  <p>Website को यहाँ से नियंत्रित करें</p>
+</div>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div class="card" id="loginBox">
+
+  <h2>🔐 Admin Login</h2>
+
+  <div id="loginMessage" class="message"></div>
+
+  <label>Email</label>
+  <input type="email" id="email" placeholder="Admin Email">
+
+  <label>Password</label>
+  <input type="password" id="password" placeholder="Password">
+
+  <button class="primary" onclick="login()">
+    Login
+  </button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+  <div class="card">
+
+    <button class="red logout" onclick="logout()">
+      Logout
+    </button>
+
+    <h2>⚙️ Admin Dashboard</h2>
+
+    <p>
+      Login सफल है। अब आप वेबसाइट की जानकारी बदल सकते हैं।
+    </p>
+
+  </div>
+
+
+  <!-- NOTICE -->
+  <div class="card">
+
+    <h2>📢 Notice बदलें</h2>
+
+    <div id="noticeMessage" class="message"></div>
+
+    <textarea id="noticeText"
+      placeholder="यहाँ वेबसाइट का महत्वपूर्ण notice लिखें"></textarea>
+
+    <button class="orange" onclick="saveNotice()">
+      💾 Notice Save करें
+    </button>
+
+  </div>
+
+
+  <!-- ADD LINK -->
+  <div class="card">
+
+    <h2>🔗 नया Portal / Link जोड़ें</h2>
+
+    <div id="linkMessage" class="message"></div>
+
+    <label>नाम</label>
+    <input id="linkTitle"
+      placeholder="जैसे DIKSHA">
+
+    <label>विवरण</label>
+    <input id="linkDescription"
+      placeholder="जैसे शिक्षक प्रशिक्षण पोर्टल">
+
+    <label>Website URL</label>
+    <input id="linkUrl"
+      placeholder="https://example.com">
+
+    <label>Category</label>
+
+    <select id="linkCategory">
+
+      <option value="central">
+        केंद्रीय पोर्टल
+      </option>
+
+      <option value="state">
+        राज्यवार पोर्टल
+      </option>
+
+      <option value="teacher">
+        शिक्षक सेवाएँ
+      </option>
+
+      <option value="exam">
+        परीक्षा / भर्ती
+      </option>
+
+    </select>
+
+    <br>
+
+    <button class="primary" onclick="addLink()">
+      ➕ Link जोड़ें
+    </button>
+
+  </div>
+
+
+  <!-- LINK LIST -->
+  <div class="card">
+
+    <h2>📋 Added Links</h2>
+
+    <div id="linksList">
+      Loading...
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyDZPFvTAAWQoin04rU0p5pH61qqSqFtbIQ",
+
+  authDomain:
+  "sikshak-seva.firebaseapp.com",
+
+  projectId:
+  "sikshak-seva",
+
+  storageBucket:
+  "sikshak-seva.firebasestorage.app",
+
+  messagingSenderId:
+  "750757646957",
+
+  appId:
+  "1:750757646957:web:cf048a8fb745578b2fe564",
+
+  measurementId:
+  "G-0W5HG4QD7F"
+};
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(id,text,type){
+
+  const box=document.getElementById(id);
+
+  box.innerText=text;
+
+  box.className="message "+type;
+
+  box.style.display="block";
+
+  setTimeout(()=>{
+    box.style.display="none";
+  },4000);
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+window.login = async function(){
+
+  const email=
+    document.getElementById("email").value.trim();
+
+  const password=
+    document.getElementById("password").value;
+
+  if(!email || !password){
+
+    showMessage(
+      "loginMessage",
+      "Email और Password भरें।",
+      "error"
+    );
+
+    return;
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.log(error);
+
+    showMessage(
+      "loginMessage",
+      "Login नहीं हुआ। Email/Password जाँचें।",
+      "error"
+    );
+  }
+};
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logout = async function(){
+
+  await signOut(auth);
+
+};
+
+
+/* =========================
+   AUTH STATUS
+========================= */
+
+onAuthStateChanged(auth, async(user)=>{
+
+  if(user){
+
+    document.getElementById("loginBox")
+      .style.display="none";
+
+    document.getElementById("dashboard")
+      .style.display="block";
+
+    await loadNotice();
+
+    await loadLinks();
+
+  }else{
+
+    document.getElementById("loginBox")
+      .style.display="block";
+
+    document.getElementById("dashboard")
+      .style.display="none";
+
+  }
+
+});
+
+
+/* =========================
+   NOTICE LOAD
+========================= */
+
+async function loadNotice(){
+
+  try{
+
+    const ref =
+      doc(db,"website","content");
+
+    const snap =
+      await getDoc(ref);
+
+    if(snap.exists()){
+
+      document.getElementById("noticeText")
+        .value =
+        snap.data().notice || "";
+
+    }
+
+  }catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+
+/* =========================
+   NOTICE SAVE
+========================= */
+
+window.saveNotice = async function(){
+
+  const notice =
+    document.getElementById("noticeText")
+      .value.trim();
+
+  try{
+
+    await setDoc(
+      doc(db,"website","content"),
+      {
+        notice:notice,
+        updatedAt:serverTimestamp()
+      },
+      {merge:true}
+    );
+
+    showMessage(
+      "noticeMessage",
+      "✅ Notice सफलतापूर्वक Save हो गया।",
+      "success"
+    );
+
+  }catch(error){
+
+    console.log(error);
+
+    showMessage(
+      "noticeMessage",
+      "❌ Notice Save नहीं हुआ। Firestore Rules जाँचें।",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =========================
+   ADD LINK
+========================= */
+
+window.addLink = async function(){
+
+  const title =
+    document.getElementById("linkTitle")
+      .value.trim();
+
+  const description =
+    document.getElementById("linkDescription")
+      .value.trim();
+
+  const url =
+    document.getElementById("linkUrl")
+      .value.trim();
+
+  const category =
+    document.getElementById("linkCategory")
+      .value;
+
+
+  if(!title || !url){
+
+    showMessage(
+      "linkMessage",
+      "नाम और URL भरना जरूरी है।",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"links"),
+      {
+        title:title,
+        description:description,
+        url:url,
+        category:category,
+        createdAt:serverTimestamp()
+      }
+    );
+
+
+    document.getElementById("linkTitle").value="";
+    document.getElementById("linkDescription").value="";
+    document.getElementById("linkUrl").value="";
+
+
+    showMessage(
+      "linkMessage",
+      "✅ Link सफलतापूर्वक जोड़ दिया गया।",
+      "success"
+    );
+
+
+    await loadLinks();
+
+  }catch(error){
+
+    console.log(error);
+
+    showMessage(
+      "linkMessage",
+      "❌ Link Save नहीं हुआ। Firestore Rules जाँचें।",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =========================
+   LOAD LINKS
+========================= */
+
+async function loadLinks(){
+
+  const box =
+    document.getElementById("linksList");
+
+  box.innerHTML="Loading...";
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"links")
+      );
+
+
+    if(snapshot.empty){
+
+      box.innerHTML =
+        "<p class='small'>अभी कोई link नहीं जोड़ा गया है।</p>";
+
+      return;
+    }
+
+
+    box.innerHTML="";
+
+
+    snapshot.forEach((item)=>{
+
+      const data=item.data();
+
+      const div =
+        document.createElement("div");
+
+      div.className="link-item";
+
+      div.innerHTML=`
+
+        <strong>
+          ${escapeHTML(data.title || "")}
+        </strong>
+
+        <p>
+          ${escapeHTML(data.description || "")}
+        </p>
+
+        <p class="small">
+          Category: ${escapeHTML(data.category || "")}
+        </p>
+
+        <p class="small">
+          ${escapeHTML(data.url || "")}
+        </p>
+
+        <button
+          class="red"
+          onclick="deleteLink('${item.id}')">
+
+          🗑️ Delete
+
+        </button>
+
+      `;
+
+      box.appendChild(div);
+
+    });
+
+  }catch(error){
+
+    console.log(error);
+
+    box.innerHTML =
+      "<p style='color:red'>Links load नहीं हुए। Firestore Rules जाँचें।</p>";
+
+  }
+
+}
+
+
+/* =========================
+   DELETE LINK
+========================= */
+
+window.deleteLink = async function(id){
+
+  if(!confirm("क्या आप इस link को delete करना चाहते हैं?")){
+    return;
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(db,"links",id)
+    );
+
+    await loadLinks();
+
+  }catch(error){
+
+    console.log(error);
+
+    alert(
+      "Delete नहीं हुआ। Firestore Rules जाँचें।"
+    );
+
+  }
+
+};
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+        </html>
