@@ -1500,11 +1500,6 @@ window.resetForm = function () {
    PDF DOWNLOAD
 ========================= */
 
-window.downloadPDF = function () {
-
-  generatePreview();
-
-
 window.downloadPDF = async function () {
 
   generatePreview();
@@ -1569,9 +1564,7 @@ window.downloadPDF = async function () {
 
     console.error("PDF Error:", error);
 
-    alert(
-      "PDF बनाने में समस्या हुई। कृपया दोबारा प्रयास करें।"
-    );
+    alert("PDF बनाने में समस्या हुई। कृपया दोबारा प्रयास करें।");
 
   }
 
