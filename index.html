@@ -1505,77 +1505,77 @@ window.downloadPDF = function () {
   generatePreview();
 
 
-  const paper =
-    document.getElementById("paper");
+window.downloadPDF = async function () {
 
+  generatePreview();
+
+  const paper = document.getElementById("paper");
 
   if (!paper) {
-
-    alert(
-      "Application preview नहीं मिला।"
-    );
-
+    alert("Application preview नहीं मिला।");
     return;
-
   }
 
-
-  if (
-    typeof html2pdf ===
-    "undefined"
-  ) {
-
-    alert(
-      "PDF Library load नहीं हुई। कृपया Internet चालू करके फिर प्रयास करें।"
-    );
-
+  if (typeof html2pdf === "undefined") {
+    alert("PDF Library load नहीं हुई। Internet चालू करके फिर प्रयास करें।");
     return;
-
   }
 
+  paper.style.display = "block";
+  paper.style.visibility = "visible";
+  paper.style.opacity = "1";
+  paper.style.background = "#ffffff";
+  paper.style.color = "#000000";
+
+  await new Promise(resolve => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(resolve);
+    });
+  });
 
   const options = {
-
     margin: 10,
 
-    filename:
-      "Sikshak-Seva-Application.pdf",
+    filename: "Sikshak-Seva-Application.pdf",
 
     image: {
       type: "jpeg",
-      quality: 0.98
+      quality: 1
     },
 
     html2canvas: {
       scale: 2,
       useCORS: true,
-      backgroundColor: "#ffffff"
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      logging: false
     },
 
     jsPDF: {
       unit: "mm",
       format: "a4",
       orientation: "portrait"
-    },
-
-    pagebreak: {
-      mode: [
-        "css",
-        "legacy"
-      ]
     }
-
   };
 
+  try {
 
-  html2pdf()
-    .set(options)
-    .from(paper)
-    .save();
+    await html2pdf()
+      .set(options)
+      .from(paper)
+      .save();
+
+  } catch (error) {
+
+    console.error("PDF Error:", error);
+
+    alert(
+      "PDF बनाने में समस्या हुई। कृपया दोबारा प्रयास करें।"
+    );
+
+  }
 
 };
-
-
 /* =========================
    SEARCH SERVICES
 ========================= */
